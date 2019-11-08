@@ -2,15 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "./styles.css";
-
-function App() {
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editingsad to see some magic happen!</h2>
-    </div>
-  );
-}
+import App from "./app";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
