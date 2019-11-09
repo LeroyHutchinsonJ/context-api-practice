@@ -35,7 +35,7 @@ const UserStats = () => (
 
 //Accept children and render them
 
-const Nav = ({ children }) => (
+const Nav = () => (
   <div className="nav">
     <UserAvatar size="small" />
   </div>
@@ -57,26 +57,41 @@ const Body = () => (
 );
 
 //Inside app I have to make context available using provider
-class App extends React.Component {
+class UserStore extends React.Component {
   state = {
     user: {
-      avatar: "https://www.gravatar.com/avatar/5c3dd2d257ff0e14dbd2583485dbd44b"
-    },
-    name: "Dave",
-    followers: 1234,
-    following: 123
+      avatar:
+        "https://www.gravatar.com/avatar/5c3dd2d257ff0e14dbd2583485dbd44b",
+      name: "Dave",
+      followers: 1234,
+      following: 123
+    }
   };
 
   render() {
     return (
       <div className="App">
         <UserContext.Provider value={this.state.user}>
-          <Nav />
-          <Body />
+          {this.props.children}
         </UserContext.Provider>
       </div>
     );
   }
 }
+const App = () => {
+  return (
+    <div>
+      <Nav />
+      <Body />
+    </div>
+  );
+};
 
-export default App;
+const AppExport = () => {
+  return (
+    <UserStore>
+      <App />
+    </UserStore>
+  );
+};
+export default AppExport;
